@@ -1,6 +1,6 @@
 /* Neon Bubble – service worker (çevrimdışı çalışma) */
-const VER = 'nb-v1';
-const CORE = ['./bubble.html', './manifest.webmanifest', './logo.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
+const VER = 'nb-v2';
+const CORE = ['./', './index.html', './manifest.webmanifest', './logo.png', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -29,9 +29,9 @@ self.addEventListener('fetch', e => {
     e.respondWith(
       fetch(req).then(r => {
         const copy = r.clone();
-        caches.open(VER).then(c => c.put('./bubble.html', copy)).catch(() => {});
+        caches.open(VER).then(c => c.put('./index.html', copy)).catch(() => {});
         return r;
-      }).catch(() => caches.match('./bubble.html', { ignoreSearch: true }))
+      }).catch(() => caches.match('./index.html', { ignoreSearch: true }))
     );
     return;
   }
